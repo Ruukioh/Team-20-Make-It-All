@@ -391,6 +391,8 @@
             <body>
                 <div class="container">
                     <!-- Task Table Section -->
+                    <!-- Task Table Section -->
+                    <!-- Task Table Section -->
                     <div class="task-table-container">
                         <div class="header">
                             <h4 class="card-title">My Tasks</h4>
@@ -403,9 +405,11 @@
                                         <th>Task</th>
                                         <th>Status</th>
                                         <th>Deadline</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- Task Row 1 -->
                                     <tr id="task1" class="not-started">
                                         <td>Sign contract for "What are conference organizers afraid of?"</td>
                                         <td>
@@ -417,7 +421,17 @@
                                             <sub class="completion-date"></sub>
                                         </td>
                                         <td class="deadline"><span class="badge badge-upcoming">2024-11-01</span></td>
+                                        <td><button class="more-info-btn" onclick="toggleTaskDetails(event, this)">More
+                                                Info</button></td>
                                     </tr>
+                                    <tr class="task-details" style="display: none;">
+                                        <td colspan="4">
+                                            <p>Details: Prepare all necessary documents and sign the contract for the
+                                                conference.</p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Task Row 2 -->
                                     <tr id="task2" class="in-progress">
                                         <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
                                         <td>
@@ -429,7 +443,17 @@
                                             <sub class="completion-date"></sub>
                                         </td>
                                         <td class="deadline"><span class="badge badge-due-soon">2024-10-25</span></td>
+                                        <td><button class="more-info-btn" onclick="toggleTaskDetails(event, this)">More
+                                                Info</button></td>
                                     </tr>
+                                    <tr class="task-details" style="display: none;">
+                                        <td colspan="4">
+                                            <p>Details: Analyze the similarities between Russian literature and
+                                                contemporary work emails.</p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Task Row 3 -->
                                     <tr id="task3" class="not-started">
                                         <td>Flooded: One year later, assessing what was lost and what was found...</td>
                                         <td>
@@ -441,7 +465,17 @@
                                             <sub class="completion-date"></sub>
                                         </td>
                                         <td class="deadline"><span class="badge badge-upcoming">2024-12-15</span></td>
+                                        <td><button class="more-info-btn" onclick="toggleTaskDetails(event, this)">More
+                                                Info</button></td>
                                     </tr>
+                                    <tr class="task-details" style="display: none;">
+                                        <td colspan="4">
+                                            <p>Details: Reflect on the events post-flood, documenting losses and
+                                                recovered items.</p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Task Row 4 -->
                                     <tr id="task4" class="completed">
                                         <td>Create 4 Invisible User Experiences you Never Knew About</td>
                                         <td>
@@ -453,7 +487,17 @@
                                             <sub class="completion-date">(completed on <span>2024-10-05</span>)</sub>
                                         </td>
                                         <td class="deadline"><span class="badge badge-upcoming">2024-10-05</span></td>
+                                        <td><button class="more-info-btn" onclick="toggleTaskDetails(event, this)">More
+                                                Info</button></td>
                                     </tr>
+                                    <tr class="task-details" style="display: none;">
+                                        <td colspan="4">
+                                            <p>Details: Research and document subtle user experience features often
+                                                overlooked.</p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Task Row 5 -->
                                     <tr id="task5" class="not-started">
                                         <td>Read "Following makes Medium better"</td>
                                         <td>
@@ -465,11 +509,76 @@
                                             <sub class="completion-date"></sub>
                                         </td>
                                         <td class="deadline"><span class="badge badge-upcoming">2024-11-10</span></td>
+                                        <td><button class="more-info-btn" onclick="toggleTaskDetails(event, this)">More
+                                                Info</button></td>
+                                    </tr>
+                                    <tr class="task-details" style="display: none;">
+                                        <td colspan="4">
+                                            <p>Details: Read and analyze the article to gather insights on audience
+                                                engagement.</p>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+                    <script>
+                        function toggleTaskDetails(event, button) {
+                            event.stopPropagation(); // Prevents the event from affecting other elements
+                            const taskRow = button.closest('tr');
+                            const nextRow = taskRow.nextElementSibling;
+                            if (nextRow && nextRow.classList.contains('task-details')) {
+                                nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
+                                button.textContent = nextRow.style.display === 'none' ? 'More Info' : 'Less Info';
+                            }
+                        }
+
+                        function updateTaskColor(selectElement) {
+                            const taskRow = selectElement.closest('tr');
+                            const status = selectElement.value;
+                            taskRow.className = status;
+                        }
+
+                        function sortTasksByDeadline() {
+                            // Your sorting logic here
+                        }
+                    </script>
+
+                    <style>
+                        .task-details td {
+                            padding: 10px;
+                            background-color: #f9f9f9;
+                            font-size: 0.9em;
+                            color: #555;
+                        }
+
+                        /* Refined More Info Button */
+                        .more-info-btn {
+                            padding: 4px 10px;
+                            font-size: 0.85em;
+                            cursor: pointer;
+                            color: #ffffff;
+                            background-color: #0073e6;
+                            border: 1px solid transparent;
+                            border-radius: 4px;
+                            transition: background-color 0.2s ease, transform 0.1s ease;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+                        }
+
+                        .more-info-btn:hover {
+                            background-color: #005bb5;
+                            transform: translateY(-1px);
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                        }
+
+                        .more-info-btn:active {
+                            background-color: #004a94;
+                            transform: translateY(1px);
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+                        }
+                    </style>
+
 
                     <!-- Personal To-Do List Section -->
                     <div class="personal-todo">
