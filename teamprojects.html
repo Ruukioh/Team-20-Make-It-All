@@ -205,7 +205,7 @@
                                         <a class="btn btn-info btn-fill btn-simple" data-toggle="modal" data-target="#myModal1" href="#pablo" 
                                         data-project-id="1"
                                            onclick="showProjectDetails(this)">
-                                            View Project Details
+                                            View Project Statistics
                                         </a>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                                         <a class="btn btn-info btn-fill btn-simple" data-toggle="modal" data-target="#myModal1" href="#pablo" 
                                         data-project-id="2"
                                            onclick="showProjectDetails(this)">
-                                            View Project Details
+                                            View Project Statistics
                                         </a>
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@
                                         <a class="btn btn-info btn-fill btn-simple" data-toggle="modal" data-target="#myModal1" href="#pablo" 
                                         data-project-id="3"
                                            onclick="showProjectDetails(this)">
-                                            View Project Details
+                                            View Project Statistics
                                         </a>
                                     </div>
                                 </div>
@@ -294,7 +294,7 @@
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         
                                         <!-- View Full Project Details Button -->
-                                        <button type="button" class="btn btn-primary ml-5" onclick="redirectToProjectDetails()">View Full Project Details</button>
+                                        <button type="button" class="btn btn-primary ml-5" onclick="redirectToProjectDetails()">View Full Project Statistics</button>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                      </div>
                  </div>
              </div>
-             <style>
+                <style>
                 .project-card {
                     transition: transform 0.2s;
                     /* Smooth transition for hover effect */
@@ -326,27 +326,27 @@
                     width: auto;
                     /* Maintain aspect ratio */
                 }
-            </style>
-             <script>
+                </style>
+                <script>
                 const projectData = {
                     1: { 
                         name: 'Project 1',
-                        completedTasks: 39, 
-                        ongoingTasks: 15, 
-                        notStartedTasks: 6,
+                        completedTasks: 6, 
+                        ongoingTasks: 2, 
+                        notStartedTasks: 2,
                         deadlineDate: "19/11/24"
                     },
                     2: { 
-                        name: 'Project 2', 
-                        completedTasks: 37, 
-                        ongoingTasks: 7, 
-                        notStartedTasks: 6,
+                        name: 'Project 2',
+                        completedTasks: 7, 
+                        ongoingTasks: 2, 
+                        notStartedTasks: 1,
                         deadlineDate: "15/11/24"
                     },
                     3: { 
-                        name: 'Project 3', 
-                        completedTasks: 27, 
-                        ongoingTasks: 3, 
+                        name: 'Project 3',
+                        completedTasks: 8, 
+                        ongoingTasks: 2, 
                         notStartedTasks: 0,
                         deadlineDate: "11/11/24"
                     },
@@ -375,7 +375,7 @@
                     // Redirect to project details page with the project ID in the query string
                     window.location.href = `project-details.html?projectId=${projectId}`;
                 }
-            </script>
+                </script>
             
              <footer class="footer">
                  <div class="container-fluid">
