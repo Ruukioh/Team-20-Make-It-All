@@ -174,49 +174,131 @@
              </nav>
              <!-- End Navbar -->
             <div class="content">
-                <div class="row">
-                    <!-- Chart Container -->
-                    <div class="col-md-6">
-                        <div class="card-title">
-                            <h2 id="projectName">Project Details</h2>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Current Project Statistics</h4>
-                                <p class="card-category">Latest Project Progress</p>
-                            </div>
-                            <div class="card-body">
-                                <div id="chartTasks" class="ct-chart ct-perfect-fourth"></div>
-                                <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Completed
-                                    <i class="fa fa-circle text-danger"></i> Ongoing
-                                    <i class="fa fa-circle text-warning"></i> To-Do
+                <div>
+                    <button type="button" class="btn btn-secondary mb-3" onclick="goBack()">Back to Team Projects</button>
+                </div>
+                <div class="container">
+                    <div class="card-title">
+                        <h2 id="projectName">Project Details</h2>
+                    </div>
+                    <div class="row">
+                        <!-- Chart Container -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Current Project Statistics</h4>
+                                    <p class="card-category">Latest Project Progress</p>
                                 </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-clock-o"></i> Last Task Completed 2 days ago
+                                <div class="card-body">
+                                    <div id="chartTasks" class="ct-chart ct-perfect-fourth"></div>
+                                    <div class="legend">
+                                        <i class="fa fa-circle text-info"></i> Completed
+                                        <i class="fa fa-circle text-danger"></i> Ongoing
+                                        <i class="fa fa-circle text-warning"></i> To-Do
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> Last Task Completed 2 days ago
+                                        <p><strong>Deadline:</strong> <span id="deadlineDate"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- User Roles Table -->
+                        <style>
+                            #userRolesTable tbody tr {
+                                transition: background-color 0.3s;
+                                cursor: pointer; /* Indicates that the row is clickable */
+                            }
+                        
+                            #userRolesTable tbody tr:hover {
+                                background-color: #f0f0f0; /* Adjust this color to make it darker or lighter */
+                            }
+                        </style>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Project Team</h4>
+                                    <p class="card-category">Click User records to view their data</p>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table align-middle" id="userRolesTable">
+                                        <thead>
+                                            <tr>
+                                                <th>User</th>
+                                                <th>Role</th>
+                                                <th>Tasks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Rows will be dynamically added here -->
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
-                    <!-- User Roles Table -->
-                    <div class="col-md-6">
-                        <div class="card-title">
-                            <h4>Project Team</h4>
-                            <table class="table" id="userRolesTable">
-                                <thead>
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Role</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Rows will be dynamically added here -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="container">
+                        <p><strong>Tasks Completed:</strong> <span id="completedTasks"></span></p>
+                        <p><strong>Tasks Ongoing:</strong> <span id="ongoingTasks"></span></p>
+                        <p><strong>Tasks To Begin:</strong> <span id="notStartedTasks"></span></p>
+    
                     </div>
+    
+                    <script>
+                        // Fetch project data based on the projectId from the URL
+                        const projectData = {
+                            1: { 
+                                name: 'Project 1',
+                                completedTasks: 6, 
+                                ongoingTasks: 2, 
+                                notStartedTasks: 2,
+                                deadlineDate: "19/11/24"
+                            },
+                            2: { 
+                                name: 'Project 2',
+                                completedTasks: 7, 
+                                ongoingTasks: 2, 
+                                notStartedTasks: 1,
+                                deadlineDate: "15/11/24"
+                            },
+                            3: { 
+                                name: 'Project 3',
+                                completedTasks: 8, 
+                                ongoingTasks: 2, 
+                                notStartedTasks: 0,
+                                deadlineDate: "11/11/24"
+                            },
+                            // Add more projects here
+                        };
+        
+                        function getProjectIdFromURL() {
+                            const params = new URLSearchParams(window.location.search);
+                            return params.get('projectId');
+                        }
+        
+                        function showProjectDetails() {
+                            const projectId = getProjectIdFromURL();
+                            const project = projectData[projectId];
+        
+                            if (project) {
+                                document.getElementById('projectName').innerText = project.name;
+                                document.getElementById('completedTasks').innerText = project.completedTasks;
+                                document.getElementById('ongoingTasks').innerText = project.ongoingTasks;
+                                document.getElementById('notStartedTasks').innerText = project.notStartedTasks;
+                                document.getElementById('deadlineDate').innerText = project.deadlineDate;
+                            } else {
+                                document.getElementById('projectName').innerText = 'Project not found';
+                            }
+                        }
+                        function goBack() {
+                            window.location.href = 'teamprojects.html';
+                        }
+                        // Display the project details when the page loads
+                        window.onload = showProjectDetails;
+                    </script>
                 </div>
                 
             
@@ -233,44 +315,46 @@
 
                     if (projectID == 1) {
                         var projectUsers = [
-                        { user: "John Doe", role: "Team Lead" },
-                        { user: "Jane Smith", role: "Team Member" },
-                        { user: "Mike Johnson", role: "Team Member" },
+                        {id: 1, user: "John Doe", role: "Team Lead", taskCount: 4},
+                        {id: 2, user: "Jane Smith", role: "Team Member", taskCount: 3 },
+                        {id: 3, user: "Mike Johnson", role: "Team Member", taskCount: 3 },
                     ];
                     } else if (projectID == 2) {
                         var projectUsers = [
-                        { user: "Sam Dolton", role: "Team Lead" },
-                        { user: "Pierce Nichols", role: "Team Member" },
-                        { user: "Raymond Shields", role: "Team Member" },
+                        {id: 4, user: "Sam Dolton", role: "Team Lead", taskCount: 4 },
+                        {id: 5, user: "Pierce Nichols", role: "Team Member", taskCount: 2 },
+                        {id: 6, user: "Raymond Shields", role: "Team Member", taskCount: 4 },
                     ];
                     } else {
                         var projectUsers = [
-                        { user: "Jodie Gray", role: "Team Lead" },
-                        { user: "Jake Marsh", role: "Team Member" },
-                        { user: "Karin Jenson", role: "Team Member" },
+                        {id: 7, user: "Jodie Gray", role: "Team Lead", taskCount: 5 },
+                        {id: 8, user: "Jake Marsh", role: "Team Member", taskCount: 2 },
+                        {id: 9, user: "Karin Jenson", role: "Team Member", taskCount: 3 },
                     ];
                     }
                 
-                    // Reference to the table body
-                    const tableBody = document.querySelector("#userRolesTable tbody");
-                
-                    // Iterate over the user data and create rows
-                    projectUsers.forEach(user => {
-                        const row = document.createElement("tr");
-                
-                        // Create User cell
-                        const userCell = document.createElement("td");
-                        userCell.textContent = user.user;
-                        row.appendChild(userCell);
-                
-                        // Create Role cell
-                        const roleCell = document.createElement("td");
-                        roleCell.textContent = user.role;
-                        row.appendChild(roleCell);
-                
-                        // Append the row to the table body
-                        tableBody.appendChild(row);
-                    });
+                    function populateUserRolesTable() {
+                        const tableBody = document.querySelector('#userRolesTable tbody');
+
+                        projectUsers.forEach(member => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${member.user}</td>
+                                <td>${member.role}</td>
+                                <td>${member.taskCount}</td>
+                            `;
+
+                            // Add click event to redirect to another page
+                            row.onclick = () => {
+                                window.location.href = `team-member-details.html?employeeId=${member.id}`;
+                            };
+
+                            tableBody.appendChild(row);
+                        });
+                    }
+
+                    // Call the function to populate the table
+                    populateUserRolesTable();
                 </script>
                 
                 <div class="container mt-5">
@@ -306,11 +390,11 @@
                                                                 id="task1">
                                                         </div>
                                                     </td>
-                                                    <td>Organise client data using Rest API</td>
+                                                    <td>Task 1</td>
                                                     <td class="assigned-employee">Assigned to: Not assigned</td>
                                                     <td class="text-end">
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                            onclick="openAssignModal(this, 'Organise client data using Rest API')">Assign</button>
+                                                            onclick="openAssignModal(this, 'Task 1')">Assign</button>
                                                     </td>
                                                 </tr>
                                                 <!-- Task 2 -->
@@ -321,12 +405,12 @@
                                                                 id="task2" checked>
                                                         </div>
                                                     </td>
-                                                    <td>Liase with clients to understand further requirements
+                                                    <td>Task 2
                                                     </td>
                                                     <td class="assigned-employee">Assigned to: Not assigned</td>
                                                     <td class="text-end">
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                            onclick="openAssignModal(this, 'Liase with clients to understand further requirements')">Assign</button>
+                                                            onclick="openAssignModal(this, 'Task 2')">Assign</button>
                                                     </td>
                                                 </tr>
                                                 <!-- Task 3 -->
@@ -337,11 +421,11 @@
                                                                 id="task3" checked>
                                                         </div>
                                                     </td>
-                                                    <td>Work on login page</td>
+                                                    <td>Task 3</td>
                                                     <td class="assigned-employee">Assigned to: Not assigned</td>
                                                     <td class="text-end">
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                            onclick="openAssignModal(this, 'Work on login page')">Assign</button>
+                                                            onclick="openAssignModal(this, 'Task 3')">Assign</button>
                                                     </td>
                                                 </tr>
                                                 <!-- Task 4 -->
@@ -352,11 +436,11 @@
                                                                 id="task4">
                                                         </div>
                                                     </td>
-                                                    <td>Work on home page</td>
+                                                    <td>Task 4</td>
                                                     <td class="assigned-employee">Assigned to: Not assigned</td>
                                                     <td class="text-end">
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                            onclick="openAssignModal(this, 'Work on home page')">Assign</button>
+                                                            onclick="openAssignModal(this, 'Task 4')">Assign</button>
                                                     </td>
                                                 </tr>
                                                 <!-- Task 5 -->
@@ -367,11 +451,11 @@
                                                                 id="task5">
                                                         </div>
                                                     </td>
-                                                    <td>Call technical lead (Chris) to go through software</td>
+                                                    <td>Task 5</td>
                                                     <td class="assigned-employee">Assigned to: Not assigned</td>
                                                     <td class="text-end">
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                            onclick="openAssignModal(this, 'Call technical lead (Chris) to go through software')">Assign</button>
+                                                            onclick="openAssignModal(this, 'Task 5')">Assign</button>
                                                     </td>
                                                 </tr>
                                                 <!-- Task 6 -->
@@ -382,11 +466,71 @@
                                                                 id="task6">
                                                         </div>
                                                     </td>
-                                                    <td>Prepare update presentation for managers</td>
+                                                    <td>Task 6</td>
                                                     <td class="assigned-employee">Assigned to: Not assigned</td>
                                                     <td class="text-end">
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                            onclick="openAssignModal(this, 'Prepare update presentation for managers')">Assign</button>
+                                                            onclick="openAssignModal(this, 'Task 6')">Assign</button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Task 7 -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="task6">
+                                                        </div>
+                                                    </td>
+                                                    <td>Task 7</td>
+                                                    <td class="assigned-employee">Assigned to: Not assigned</td>
+                                                    <td class="text-end">
+                                                        <button type="button" class="btn btn-info btn-sm"
+                                                            onclick="openAssignModal(this, 'Task 7')">Assign</button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Task 8 -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="task6">
+                                                        </div>
+                                                    </td>
+                                                    <td>Task 8</td>
+                                                    <td class="assigned-employee">Assigned to: Not assigned</td>
+                                                    <td class="text-end">
+                                                        <button type="button" class="btn btn-info btn-sm"
+                                                            onclick="openAssignModal(this, 'Task 8')">Assign</button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Task 9 -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="task6">
+                                                        </div>
+                                                    </td>
+                                                    <td>Task 9</td>
+                                                    <td class="assigned-employee">Assigned to: Not assigned</td>
+                                                    <td class="text-end">
+                                                        <button type="button" class="btn btn-info btn-sm"
+                                                            onclick="openAssignModal(this, 'Task 9')">Assign</button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Task 10 -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="task6">
+                                                        </div>
+                                                    </td>
+                                                    <td>Task 10</td>
+                                                    <td class="assigned-employee">Assigned to: Not assigned</td>
+                                                    <td class="text-end">
+                                                        <button type="button" class="btn btn-info btn-sm"
+                                                            onclick="openAssignModal(this, 'Task 10')">Assign</button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -512,70 +656,8 @@
                         taskTable.appendChild(newRow); // Append the new row to the table
                     }
                 </script>
-                
-                <div class="container">
-                    <p><strong>Tasks Completed:</strong> <span id="completedTasks"></span></p>
-                    <p><strong>Tasks Ongoing:</strong> <span id="ongoingTasks"></span></p>
-                    <p><strong>Tasks To Begin:</strong> <span id="notStartedTasks"></span></p>
-                    <p><strong>Deadline:</strong> <span id="deadlineDate"></span></p>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-secondary mb-3" onclick="goBack()">Back to Team Projects</button>
-                </div>
+
             </div>
-
-            <script>
-                // Fetch project data based on the projectId from the URL
-                const projectData = {
-                    1: { 
-                        name: 'Project 1',
-                        completedTasks: 6, 
-                        ongoingTasks: 2, 
-                        notStartedTasks: 2,
-                        deadlineDate: "19/11/24"
-                    },
-                    2: { 
-                        name: 'Project 2',
-                        completedTasks: 7, 
-                        ongoingTasks: 2, 
-                        notStartedTasks: 1,
-                        deadlineDate: "15/11/24"
-                    },
-                    3: { 
-                        name: 'Project 3',
-                        completedTasks: 8, 
-                        ongoingTasks: 2, 
-                        notStartedTasks: 0,
-                        deadlineDate: "11/11/24"
-                    },
-                    // Add more projects here
-                };
-
-                function getProjectIdFromURL() {
-                    const params = new URLSearchParams(window.location.search);
-                    return params.get('projectId');
-                }
-
-                function showProjectDetails() {
-                    const projectId = getProjectIdFromURL();
-                    const project = projectData[projectId];
-
-                    if (project) {
-                        document.getElementById('projectName').innerText = project.name;
-                        document.getElementById('completedTasks').innerText = project.completedTasks;
-                        document.getElementById('ongoingTasks').innerText = project.ongoingTasks;
-                        document.getElementById('notStartedTasks').innerText = project.notStartedTasks;
-                        document.getElementById('deadlineDate').innerText = project.deadlineDate;
-                    } else {
-                        document.getElementById('projectName').innerText = 'Project not found';
-                    }
-                }
-                function goBack() {
-                    window.location.href = 'teamprojects.html';
-                }
-                // Display the project details when the page loads
-                window.onload = showProjectDetails;
-            </script>
             
             <footer class="footer">
                 <div class="container-fluid">

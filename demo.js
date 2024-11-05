@@ -237,6 +237,179 @@ demo = {
             });
         }
 
+        function getEmployeeID() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('employeeId');
+        }
+
+        const employeeID = getEmployeeID();
+
+        if (employeeID == 1) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['50%', '25%', '25%'],
+                series: [50, 25, 25]
+            });
+        } else if (employeeID == 2) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['33%', '34%', '33%'],
+                series: [33, 34, 33]
+            });
+        } else if (employeeID == 3) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['100%'],
+                series: [100]
+            });
+        } else if (employeeID == 4) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['75%', '25%'],
+                series: [75, 25]
+            });
+        } else if (employeeID == 5) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['100%'],
+                series: [100]
+            });
+        } else if (employeeID == 6) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['50%','', '50%'],
+                series: [50, 0, 50]
+            });
+        } else if (employeeID == 7) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['60%','40%'],
+                series: [60, 40]
+            });
+        } else if (employeeID == 8) {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['100%'],
+                series: [100]
+            });
+        } else {
+            var optionsTasks = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+            
+            Chartist.Pie('#chartTasks2', dataTasks, optionsTasks);
+            
+            Chartist.Pie('#chartTasks2', {
+                labels: ['100%'],
+                series: [100]
+            });
+        }
+
+
+
         var dataPreferences = {
             series: [
                 [25, 30, 20, 25]
@@ -262,15 +435,71 @@ demo = {
         });
 
         
-
-        var dataSales = {
-            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
-            series: [
-                [287, 385, 490, 492, 554, 586, 698, 695, 752, 788, 846, 944],
-                [67, 152, 143, 240, 287, 335, 435, 437, 539, 542, 544, 647],
-                [23, 113, 67, 108, 190, 239, 307, 308, 439, 410, 410, 509]
-            ]
-        };
+        if (employeeID == 1) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [6, 7, 8, 5, 9, 7, 4, 3]
+                ],
+            };
+        } else if (employeeID == 2) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [5, 7, 10, 3, 6, 8, 2, 1]
+                ],
+            };
+        } else if (employeeID == 3) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [1, 5, 8, 6, 3, 10, 9, 4]
+                ],
+            };
+        } else if (employeeID == 4) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [4, 5, 4, 3, 8, 2, 9, 11]
+                ],
+            };
+        } else if (employeeID == 5) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [10, 10, 7, 5, 5, 4, 4, 3]
+                ],
+            };
+        } else if (employeeID == 6) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [6, 6, 7, 5, 9, 3, 6, 5]
+                ],
+            };
+        } else if (employeeID == 7) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [4, 7, 3, 5, 7, 7, 2, 3]
+                ],
+            };
+        } else if (employeeID == 8) {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [6, 3, 8, 7, 10, 11, 2, 1]
+                ],
+            };
+        } else {
+            var dataSales = {
+                labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+                series: [
+                    [10, 11, 8, 9, 9, 7, 6, 5]
+                ],
+            };
+        } 
+        
 
         // var optionsSales = {
         //   lineSmooth: false,
@@ -292,10 +521,10 @@ demo = {
         //   showPoint: true,
         //   fullWidth: true
         // };
-        var optionsSales = {
+        var optionsHours = {
             lineSmooth: false,
             low: 0,
-            high: 800,
+            high: 12,
             showArea: true,
             height: "245px",
             axisX: {
@@ -309,7 +538,7 @@ demo = {
             fullWidth: false
         };
 
-        var responsiveSales = [
+        var responsiveHours = [
             ['screen and (max-width: 640px)', {
                 axisX: {
                     labelInterpolationFnc: function(value) {
@@ -319,7 +548,7 @@ demo = {
             }]
         ];
 
-        var chartHours = Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
+        var chartHours = Chartist.Line('#chartHours', dataSales, optionsHours, responsiveHours);
 
         // lbd.startAnimationForLineChart(chartHours);
 
