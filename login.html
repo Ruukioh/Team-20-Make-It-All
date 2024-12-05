@@ -290,7 +290,11 @@
             email: "employee@make-it-all.co.uk",
             password: "EmployeePass123!",
             role: "Employee"
-        }
+        },
+	{
+            email: "admin@make-it-all.co.uk",
+            password: "AdminEmployeePass123!",
+            role: "Admin"
     ];
 	function validateEmail(email) {
 		const emailPattern = /^[a-zA-Z0-9._%+-]+@make-it-all\.co\.uk$/;
@@ -343,9 +347,10 @@
                 window.location.href = "manager_dashboard.html";
             } else if (user.role === "Team Leader") {
                 window.location.href = "teamleader.html";
-            } else {
+            } else  if (user.role === "Employee") {
                 window.location.href = "teamMember.html";
-            }
+            } else {
+                window.location.href = "Admin.html";
         } else {
             // Invalid credentials
             errorMessage.textContent = "Invalid email or password.";
